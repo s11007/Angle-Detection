@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 
 import os
+import argparse
 from datetime import datetime
 from video import video
 
-# 主函數
-
+# 主函数
 def main(csv_dir, video_dir, output_dir):
-
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
     output_dir = os.path.join(output_dir, timestamp)
+
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
 
     for csv_file in os.listdir(csv_dir):
         if csv_file.endswith(').csv'):
@@ -24,7 +26,11 @@ def main(csv_dir, video_dir, output_dir):
 # 執行
 
 if __name__ == '__main__':
-    csv_dir = "C:/Users/JJ/Documents/專題/small/"
-    video_dir = "C:/Users/JJ/Documents/專題/small/"
-    output_dir = "C:/Users/JJ/Downloads/"
-    main(csv_dir, video_dir, output_dir)
+    parser = argparse.ArgumentParser(description="位置")
+    parser.add_argument('--csv_dir', type=str, required=True, help="CSV目錄位置")
+    parser.add_argument('--video_dir', type=str, required=True, help="影片目錄位置")
+    parser.add_argument('--output_dir', type=str, required=True, help="影片輸出位置")
+
+    args = parser.parse_args()
+
+    main(args.csv_dir, args.video_dir, args.output_dir)

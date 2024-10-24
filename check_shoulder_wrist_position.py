@@ -8,10 +8,10 @@ def check_shoulder_wrist_position(position_data):
     errors = []
 
     shoulder_wrist_distance_left = abs(left_wrist[0] - left_shoulder[0]) < (
-            abs(left_shoulder[0] - position_data['left_hip'][0]) * 0.1)
+            abs(left_shoulder[0] - position_data['left_hip'][0]) * 0.4)
     
     shoulder_wrist_distance_right = abs(right_wrist[0] - right_shoulder[0]) < (
-            abs(right_shoulder[0] - position_data['right_hip'][0]) * 0.1)
+            abs(right_shoulder[0] - position_data['right_hip'][0]) * 0.4)
 
     if not shoulder_wrist_distance_left:
         errors.append("Incorrect position of left shoulder and left wrist")

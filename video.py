@@ -110,7 +110,9 @@ def video(csv_path, video_path, output_dir):
                 'left_hip': points['left_hip'],
                 'right_hip': points['right_hip'],
                 'left_ankle': points['left_ankle'],
-                'right_ankle': points['right_ankle']
+                'right_ankle': points['right_ankle'],
+		'left_knee' : points['left_knee'],
+		'right_knee' : points['right_knee']
             }
             
             errors = check_pushup(position_data)

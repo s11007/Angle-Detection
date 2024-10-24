@@ -1,22 +1,23 @@
-# 判斷身體是否保持直線
+from calculate_angle import calculate_angle
+
 def check_body_straight(position_data):
-    left_shoulder = position_data['left_shoulder']
-    left_hip = position_data['left_hip']
-    right_shoulder = position_data['right_shoulder']
-    right_hip = position_data['right_hip']
+    left_hip_angle = calculate_angle(position_data['left_shoulder'], position_data['left_hip'], position_data['left_knee'])
+    right_hip_angle = calculate_angle(position_data['right_shoulder'], position_data['right_hip'], position_data['right_knee'])
+    left_knee_angle = calculate_angle(position_data['left_hip'], position_data['left_knee'], position_data['left_ankle'])
+    right_knee_angle = calculate_angle(position_data['right_hip'], position_data['right_knee'], position_data['right_ankle'])
 
     errors = []
 
-    left_distance = abs(left_shoulder[1] - left_hip[1])
-    right_distance = abs(right_shoulder[1] - right_hip[1])
+    if left_hip_angle < 150 :
+        errors.append("Left hip is too high")
 
-    proportion = 0.1
-    threshold_left = left_distance * proportion
-    threshold_right = right_distance * proportion
+    if left_knee_angle < 150 :
+        errors.append("Left knee is too low")
 
-    body_straight = (left_distance < threshold_left) and (right_distance < threshold_right)
+    if right_hip_angle < 150 :
+        errors.append("Right hip is too high")
 
-    if not body_straight:
-        errors.append("The body is not straight")
+    if right_knee_angle < 150:
+        errors.append("Right knee is too low")
 
     return errors

@@ -62,7 +62,7 @@ def video(csv_path, video_path, output_dir):
     output_video_path = os.path.join(output_dir,
                                        f'{os.path.basename(video_path).split(".")[0]}_with_errors.mp4')
 
-    fourcc = cv2.VideoWriter_fourcc(*'XVID')
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     out = cv2.VideoWriter(output_video_path,
                           fourcc,
                           fps,
